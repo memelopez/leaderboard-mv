@@ -1,5 +1,5 @@
 {
-  "name": "webpackSetup2",
+  "name": "leaderboard-mv",
   "version": "1.0.0",
   "description": "A simple yet powerful webpack boilerplate",
   "private": true,
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/memelopez/webpackSetup2.git"
+    "url": "git+https://github.com/memelopez/leaderboard-mv.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/memelopez/webpackSetup2/issues"
+    "url": "https://github.com/memelopez/leaderboard-mv/issues"
   },
-  "homepage": "https://github.com/memelopez/webpackSetup2#readme",
+  "homepage": "https://github.com/memelopez/leaderboard-mv#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.3.0",
@@ -35,8 +35,5 @@
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1"
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
   }
 }
