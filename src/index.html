@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wbpack Exercise</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- Bootswatch theme -->
+    <link rel="stylesheet" href="https://bootswatch.com/5/sketchy/bootstrap.min.css">
 </head>
 <body>
-    <h1>Hello webpack!</h1>
+    <div class="container-fluid">
+        <div id="title">
+            <h1 class="primary">Leaderboard</h1>
+        </div>
+        <div id="content" class="row">
+            <div class="col-10 m-auto">
+                <div id="list" class="container-fluid"></div>
+                <div id="form" class="container-fluid"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
