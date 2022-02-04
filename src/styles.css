@@ -1,7 +1,64 @@
-.hello {
-  color: red;
+/* /src/styles.css */
+body {
+  background-color: white;
+  color: black;
 }
 
-body {
-  background-color: bisque;
+.topTitle {
+  height: 120px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.contenido {
+  margin-left: 2em;
+  margin-top: 3em;
+}
+
+#form {
+  padding: 0 5.5em 0 2.5em;
+}
+
+#list {
+  padding: 0 1.5em;
+}
+
+.loMasGrande {
+  font-size: 5em;
+}
+
+.loMediano {
+  font-size: 3em;
+}
+
+.entreMyP {
+  font-size: 2em;
+}
+
+.loPeque {
+  font-size: 1.5em;
+}
+
+.subtitle {
+  height: 100px;
+}
+
+form#addScore input {
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+ul#scoresList .scoreLI {
+  height: 55px;
+  padding-left: 1em;
+}
+
+ul#scoresList {
+  list-style: none;
+  border: 3px solid black;
+  border-radius: 15px;
+}
+
+ul#scoresList li:nth-child(odd) {
+  background-color: lightgray;
 }

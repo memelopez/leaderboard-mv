@@ -5,12 +5,13 @@ module.exports = {
   mode: 'development',
   entry: {
     index: './src/index.js',
-    print: './src/print.js',
+    list: './src/modules/leaderboardList.js',
+    form: './src/modules/leaderboardForm.js',
   },
   devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'Leaderboard API',
       template: './src/index.html',
     }),
   ],
