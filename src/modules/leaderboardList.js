@@ -23,9 +23,22 @@ const render1score = (score) => {
 
   const li = document.createElement('li');
   const p = document.createElement('p');
-  p.textContent = `${score.name}: ${score.points}`;
+  p.textContent = `${score.user}: ${score.score}`;
   li.className = 'scoreLI d-flex flex-row align-items-center';
   p.className = 'loPeque p-0 m-0';
+
+  li.appendChild(p);
+  ulist.appendChild(li);
+};
+
+const emptyListMsg = () => {
+  const ulist = document.querySelector('#scoresList');
+  ulist.innerHTML = '';
+  const li = document.createElement('li');
+  const p = document.createElement('p');
+  p.textContent = 'No scores yet!';
+  p.className = 'loPeque p-0 m-0';
+  li.className = 'scoreLI d-flex flex-row align-items-center justify-content-center m-0 p-0';
 
   li.appendChild(p);
   ulist.appendChild(li);
@@ -34,7 +47,11 @@ const render1score = (score) => {
 const renderList = (listOfScores) => {
   const ulist = document.querySelector('#scoresList');
   ulist.innerHTML = '';
-  listOfScores.forEach((score) => render1score(score));
+  if (listOfScores.length === 0) {
+    emptyListMsg();
+  } else {
+    listOfScores.forEach((score) => render1score(score));
+  }
 };
 
 export { renderListZone, renderList };

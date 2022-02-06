@@ -2,31 +2,61 @@
 import './styles.css';
 import { renderListZone, renderList } from './modules/leaderboardList';
 import renderFormZone from './modules/leaderboardForm';
+import Store from './modules/store';
+import leaderAPI from './modules/leaderAPI';
+import validateScore from './modules/helpfulFunctions';
 
-// Hardcoded scores
-const scoreList = [];
-const score1 = {};
-score1.name = 'John';
-score1.points = 100;
-scoreList.push(score1);
-const score2 = {};
-score2.name = 'Jane';
-score2.points = 333;
-scoreList.push(score2);
-const score3 = {};
-score3.name = 'Joe';
-score3.points = 7;
-scoreList.push(score3);
-const score4 = {};
-score4.name = 'Jenny';
-score4.points = 55;
-scoreList.push(score4);
+// variables
+let scoreList = [];
+let gameKey;
+const newGameURL = `
+  https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/`;
+const newGameName = { name: "Elmer's Glue" };
 
-const displayStuff = () => {
-  renderListZone();
-  renderList(scoreList);
+gameKey = Store.getGameKey();
+
+const iniateLeaderboard = () => {
   renderFormZone();
+  renderListZone();
+  if (!gameKey) { // NO gameKey in localStorage
+    leaderAPI.postName(newGameName, newGameURL).then((res) => {
+      Store.setGameKey(res);
+      gameKey = res;
+      leaderAPI.getScores(newGameURL, gameKey).then((res) => {
+        scoreList = res.result;
+        renderList(scoreList);
+      });
+    });
+  } else { // gameKey is in localStorage
+    leaderAPI.getScores(newGameURL, gameKey).then((res) => {
+      scoreList = res.result;
+      renderList(scoreList);
+    });
+  }
 };
 
 // When content loads
-document.addEventListener('DOMContentLoaded', displayStuff());
+document.addEventListener('DOMContentLoaded', iniateLeaderboard());
+
+// Event: when form is submitted
+document.querySelector('#addScore').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // Get form values
+  const name = document.querySelector('#name').value.trim();
+  const score = document.querySelector('#score').value.trim();
+  if (validateScore(name, score)) {
+    // post score
+    leaderAPI.postScore(name, score, newGameURL, gameKey);
+  }
+  document.querySelector('#name').value = '';
+  document.querySelector('#score').value = '';
+});
+
+// Event: when refresh button is clicked
+document.querySelector('#refresh').addEventListener('click', () => {
+  leaderAPI.getScores(newGameURL, gameKey).then((res) => {
+    scoreList = res.result;
+    renderList(scoreList);
+  });
+});
